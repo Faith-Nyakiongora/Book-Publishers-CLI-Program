@@ -30,6 +30,20 @@ def upgrade():
     op.add_column("books", sa.Column("genre_id", sa.Integer(), nullable=True))
 
     # table for many to many relationship called book genre
+    op.create_table(
+        "book_genre",
+        sa.Column("book_id", sa.Integer(), nullable=False),
+        sa.Column("genre_id", sa.Integer(), nullable=False),
+        sa.ForeignKeyConstraint(
+            ["book_id"],
+            ["books.id"],
+        ),
+        sa.ForeignKeyConstraint(
+            ["genre_id"],
+            ["genres.id"],
+        ),
+        sa.PrimaryKeyConstraint("book_id", "genre_id"),
+    )
 
 
 def downgrade():
