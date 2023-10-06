@@ -47,4 +47,7 @@ def upgrade():
 
 
 def downgrade():
-    pass
+    op.drop_table("book_genre")
+    op.drop_table("genres")
+
+    op.drop_column("books", "genre_id")
