@@ -17,7 +17,13 @@ depends_on = None
 
 
 def upgrade():
-    pass
+    op.create_table(
+        "genres",
+        sa.Column("id", sa.Integer(), nullable=False),
+        sa.Column("name", sa.String(length=255), nullable=False),
+        sa.PrimaryKeyConstraint("id"),
+        sa.UniqueConstraint("name"),
+    )
 
 
 def downgrade():

@@ -35,6 +35,9 @@ class Author(Base):
     def __init__(self, name):
         self.name = name
 
+    def add_book(self, book):
+        self.books.append(book)
+
     def __repr__(self):
         return f"<Author(name='{self.name}')>"
 
