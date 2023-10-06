@@ -17,6 +17,7 @@ depends_on = None
 
 
 def upgrade():
+    # new genre table
     op.create_table(
         "genres",
         sa.Column("id", sa.Integer(), nullable=False),
@@ -24,6 +25,11 @@ def upgrade():
         sa.PrimaryKeyConstraint("id"),
         sa.UniqueConstraint("name"),
     )
+
+    # genre id column to the books
+    op.add_column("books", sa.Column("genre_id", sa.Integer(), nullable=True))
+
+    # table for many to many relationship called book genre
 
 
 def downgrade():
